@@ -21,6 +21,7 @@
 
 <script setup>
 const props = defineProps(['gameList'])
+const baseApiUrl = import.meta.env.VITE_API_BASE_URL
 
 const startGame = (gameId) => {
   const fetchParams = {
@@ -35,7 +36,7 @@ const startGame = (gameId) => {
     })
   }
   fetch(
-    `https://poker.evenbetpoker.com/api/web/v2/casino/games/${gameId}/session-demo?clientId=default`,
+    baseApiUrl + `/v2/casino/games/${gameId}/session-demo?clientId=default`,
     fetchParams
   )
   .then(response => response.json())

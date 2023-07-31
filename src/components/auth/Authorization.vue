@@ -16,7 +16,8 @@ import { ref } from 'vue';
 import router from '../../router';
 import AuthInput from './AuthInput.vue'
 
-const url = 'https://poker.evenbetpoker.com/api/web/v2/login?clientId=default'
+const baseApiUrl = import.meta.env.VITE_API_BASE_URL
+const authParamsUrl = '/v2/login?clientId=default'
 
 const user = ref({
   clientId: 'default',
@@ -34,7 +35,7 @@ const signIn = async () => {
     body: JSON.stringify(user.value)
   }
 
-  fetch(url, loginData)
+  fetch(baseApiUrl + authParamsUrl, loginData)
     .then((response) => {
       return response.json();
     })
